@@ -1,6 +1,8 @@
 // ASPETTA IL CARICAMENTO
 window.addEventListener("load", function () {
 
+  document.body.style.overflow = "hidden";
+
   const video = document.getElementById("bg-video");
   document.getElementById("scrollBtn").addEventListener("click", () => {
   window.scrollTo({
@@ -19,20 +21,49 @@ window.addEventListener("load", function () {
     if (video) video.play();
   }, { once: true });
 
-  if (video) video.pause();
+  intro.addEventListener("click", () => {
+  if (video) {
+    video.muted = true;
+    video.play().then(() => {
+      console.log("Video partito ✅");
+    }).catch(err => {
+      console.log("Bloccato ❌", err);
+    });
+  }
+});
+
+
+
+setTimeout(() => {
+  if (video) {
+    video.muted = true;
+    video.play().catch(() => {
+      console.log("Serve interazione utente");
+    });
+  }
+}, 3000);
+
+
+document.body.addEventListener("touchstart", () => {
+  if (video) {
+    video.play();
+  }
+}, { once: true });
 
   // INTRO
-  setTimeout(() => {
-    const intro = document.getElementById("intro");
-    if (intro) {
-      intro.style.opacity = "0";
+ setTimeout(() => {
+  const intro = document.getElementById("intro");
 
-      setTimeout(() => {
-        intro.style.display = "none";
-        if (video) video.play();
-      }, 2000);
-    }
-  }, 2500);
+  if (intro) {
+    intro.classList.add("reveal"); // 👈 ANIMAZIONE APERTURA
+
+    setTimeout(() => {
+      intro.style.display = "none";
+      document.body.style.overflow = "auto"; // riattiva scroll
+      if (video) video.play();
+    }, 1500);
+  }
+}, 3000);
 
   // TESTO HERO
   setTimeout(() => {
