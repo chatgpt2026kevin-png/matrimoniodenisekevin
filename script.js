@@ -60,6 +60,7 @@ document.body.addEventListener("touchstart", () => {
     setTimeout(() => {
       intro.style.display = "none";
       document.body.style.overflow = "auto"; // riattiva scroll
+      window.scrollTo(0, 0);
       if (video) video.play();
     }, 1500);
   }
