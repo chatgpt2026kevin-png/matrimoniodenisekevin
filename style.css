@@ -16,6 +16,8 @@ body {
   background: #faf9fb;
 }
 
+
+
 /* HERO */
 .hero {
   position: relative;
@@ -223,17 +225,6 @@ form {
   color: #7a5ca8;
 }
 
-/* LINEA ANIMATA */
-.input-group::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(135deg, #c8a2c8, #9dcf9d);
-  transition: 0.4s ease;
-}
 
 .input-group:focus-within::after {
   width: 100%;
@@ -254,7 +245,7 @@ textarea {
   border: none;
   border-radius: 50px;
 
-  background: linear-gradient(135deg, #c8a2c8, #9dcf9d);
+  background: linear-gradient(135deg, #c8a2c8, #6285ef);
   color: white;
 
   font-size: 16px;
@@ -324,19 +315,25 @@ button {
   line-height: 2;
 }
 
-/* INTRO */
 #intro {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
-  height: 100vh;
+  height: 100svh; /* 👈 FIX MOBILE */
+
   background: white;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   z-index: 9999;
-  transition: opacity 2s ease;
+
+  overflow: hidden; /* 👈 IMPORTANTISSIMO */
+  clip-path: circle(150% at 50% 50%);
+  transition: clip-path 1.5s ease-in-out, opacity 1s ease;
 }
 
 .seal {
@@ -538,6 +535,19 @@ button {
   transform: translateY(80px) scale(0.95);
   filter: blur(10px);
   transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal h2 {
+  font-size: 28px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+/* TESTO */
+.reveal p {
+  font-size: 17px;
+  line-height: 1.9;
+  opacity: 0.9;
 }
 
 .reveal.show {
@@ -846,7 +856,7 @@ section {
   margin-top: 20px;
   padding: 12px 25px;
 
-  background: linear-gradient(135deg, #c8a2c8, #9dcf9d);
+  background: linear-gradient(135deg, #c8a2c8, #6285ef);
   color: white;
   text-decoration: none;
   border-radius: 30px;
@@ -966,6 +976,8 @@ section {
 
 #intro.reveal {
   animation: revealPage 1.2s ease forwards;
+  clip-path: circle(0% at 50% 50%);
+  opacity: 0;
 }
 
 @keyframes revealPage {
